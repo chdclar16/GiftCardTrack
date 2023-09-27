@@ -4,7 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('./models/UserSchema'); // Replace with your User model
+const User = require('./models/UserSchema');
 require('dotenv').config();
 
 const app = express();
@@ -16,26 +16,23 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-// Initialize Passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Configure the local authentication strategy
-passport.use(new LocalStrategy(User.authenticate()));
-
-// Serialize and deserialize user data
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 // Middleware for handling CORS
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+}));
 
 // Middleware for parsing request body
 app.use(express.json());
 
 // Importing route handlers
-const authRoutes = require('./routes/authRoutes'); // Pass passport here
+const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
+
+const cardRoutes = require('./routes/cardRoutes');
+app.use('/card', cardRoutes)
+
 
 // Connecting into the DB
 mongoose
