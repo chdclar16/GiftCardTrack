@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createCard, getGiftCards, getGiftCard, updateGiftCard } = require('../controllers/cardController')
+const { createCard, getGiftCards, getGiftCard, updateGiftCard, deleteGiftCard } = require('../controllers/cardController')
 
 // Create a new Gift Card
 router.post('/', createCard)
@@ -14,5 +14,8 @@ router.get('/:id', getGiftCard);
 
 // Update giftcard
 router.put('/:id', updateGiftCard);
+
+// Delete giftcard
+router.delete('/:id', deleteGiftCard);
 
 module.exports = router

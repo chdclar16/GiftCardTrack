@@ -81,10 +81,26 @@ const updateGiftCard = async(req, res) => {
     }
 }
 
+const deleteGiftCard = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const result = await GiftCard.findByIdAndDelete(id);
+
+        if (!result) {
+            return res.status(404).json({ message: 'Giftcard not found'})
+        }
+
+        return res.status(200).send({ message: 'Giftcard removed' })
+    } catch (err) {
+        console.log({"Delete error": err.message})
+        return res.status(500).send({ message: err.message })
+    }
+}
 
 module.exports = {
     createCard,
     getGiftCards,
     getGiftCard,
-    updateGiftCard
+    updateGiftCard,
+    deleteGiftCard
 }
