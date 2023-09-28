@@ -64,8 +64,10 @@ const login = async (req, res) => {
                     username: user.username,
                     id: user._id,
                 },
-                process.env.JWT,
-                {},
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: '1d'
+                },
                 (err, token) => {
                     if (err) throw err;
                     res.cookie("token", token).json(user);
@@ -83,13 +85,11 @@ const login = async (req, res) => {
 
 // Logout
 const logOut = (req, res) => {
-    req.logOut((err) => {
-        if (err) {
-            console.error("Error Logging out:", err);
-            return res.status(500).json({ error: "Internal Server Error" });
-        }
-    });
-    res.status(200).json({ message: "Logout Successful" });
+    // Clear the token from cookies
+    res.clearCookie('token');
+
+    // Send a response to the client
+    res.status(200).json({ message: "Logout Succcessful" })
 };
 
 // Get the profile

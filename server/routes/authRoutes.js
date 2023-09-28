@@ -10,7 +10,7 @@ router.post('/register', register);
 router.post('/login', login)
 
 // Logout Route
-router.get('/logout', logOut);
+router.delete('/', logOut);
 
 // Profile Route
 router.get('/profile', getProfile)
