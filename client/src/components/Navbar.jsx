@@ -14,7 +14,7 @@ const NavBar = () => {
                 <Link>
                     <span>Cards</span>
                 </Link>
-                <Link>
+                <Link to='/login'>
                     <button>Login</button>
                 </Link>
             </nav>

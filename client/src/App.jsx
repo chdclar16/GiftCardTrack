@@ -3,6 +3,9 @@ import NavBar from './components/Navbar'
 import { Toaster } from 'react-hot-toast'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import NewGiftCard from './pages/NewGiftCard'
 
 function App() {
 
@@ -12,6 +15,9 @@ function App() {
       <Toaster position='bottom-right' toastOptions={{duration: 2000}} />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/new' element={<NewGiftCard />} />
       </Routes>
     </UserContextProvider>
   )

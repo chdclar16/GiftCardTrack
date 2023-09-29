@@ -13,7 +13,8 @@ const createCard = async(req, res) => {
         }
         const newCard = {
             name: req.body.name,
-            balance: req.body.balace,
+            balance: req.body.balance,
+            photo: req.body.photo,
             user: req.user._id
         };
 

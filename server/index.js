@@ -1,21 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const User = require('./models/UserSchema');
+const cookieParser = require('cookie-parser')
 require('dotenv').config();
 
 const app = express();
-
-// Configure session Middleware
-app.use(session({
-    secret: process.env.PASSKEY,
-    resave: false,
-    saveUninitialized: false,
-}));
-
 
 // Middleware for handling CORS
 app.use(cors({
@@ -25,6 +14,10 @@ app.use(cors({
 
 // Middleware for parsing request body
 app.use(express.json());
+
+// Middleware for cokkie parser
+app.use(cookieParser());
+app.use(express.urlencoded(({extended: false})))
 
 // Importing route handlers
 const authRoutes = require('./routes/authRoutes');

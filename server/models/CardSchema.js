@@ -11,6 +11,10 @@ const giftCardSchema = mongoose.Schema(
             require: true,
             min: 0,
         },
+        photo: {
+            type: String,
+            required: false,
+        },
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
