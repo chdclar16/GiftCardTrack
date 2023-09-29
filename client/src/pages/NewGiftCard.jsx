@@ -48,32 +48,43 @@ const NewGiftCard = () => {
     }
 
   return (
-    <div>
-        <form onSubmit={handleCreateNew}>
-            <label>Gift Card Name</label>
-            <input
-            type='text'
-            placeholder='Gift Card Name...'
-            value={data.name}
-            onChange={((e) => setData({...data, name: e.target.value}))}
-            required
-            />
-            <label>Gift Card Balance</label>
-            <input
-            type='text'
-            placeholder='Gift Card Balance...'
-            value={data.balance}
-            onChange={handleBalanceChange}
-            required
-            />
-            <label>Gift Card Photo</label>
-            <input
-            type='text'
-            placeholder='Gift Card Photo URL'
-            value={data.photo}
-            onChange={((e) => setData({...data, photo: e.target.value}))}
-            />
-            <button type='submit'>Create</button>
+    <div className='w-full  flex justify-center items-center h-screen xl:h-screen-80'>
+        <form onSubmit={handleCreateNew} className='bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 w-96'>
+            <div className='mb-4'>
+                <label className='block text-gray-700 text-lg font-bold mb-2'>Gift Card Name</label>
+                <input
+                type='text'
+                placeholder='Gift Card Name...'
+                value={data.name}
+                onChange={((e) => setData({...data, name: e.target.value}))}
+                required
+                className='shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-non focus:shadow-outline'
+                />
+            </div>
+            <div className='mb-4'>
+                <label className='block text-gray-700 text-lg font-bold mb-2'>Gift Card Balance</label>
+                <input
+                type='text'
+                placeholder='Gift Card Balance...'
+                value={data.balance}
+                onChange={handleBalanceChange}
+                required
+                className='shadow appearance-none border rounded w-full py-2 px-3'
+                />
+            </div>
+            <div className='mb-4'>
+                <label className='block text-gray-700 text-lg font-bold mb-2'>Gift Card Photo</label>
+                <input
+                type='text'
+                placeholder='Photo URL(Optional)'
+                value={data.photo}
+                onChange={((e) => setData({...data, photo: e.target.value}))}
+                className='shadow appearance-none border rounded w-full py-2 px-3'
+                />
+            </div>
+            <div className='flex justify-end '>
+                <button type='submit' className='btn btn-primary bg-blue-500 hover:bg-blue-700 text-black border-inherit hover:border-inherit'>Create</button>
+            </div>
         </form>
     </div>
   )
