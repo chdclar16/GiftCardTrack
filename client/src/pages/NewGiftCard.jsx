@@ -3,14 +3,17 @@ import { useContext, useState } from 'react'
 import { toast } from 'react-hot-toast';
 import { UserContext } from '../../context/userContext';
 
+
 const NewGiftCard = () => {
+    const { user } = useContext(UserContext)
+    console.log(user)
     const [data, setData] = useState({
         name: '',
         balance: '',
         photo: '',
+        user: user.data.id,
     })
-    const { user } = useContext(UserContext)
-    console.log(user.data?.id)
+
 
     // Removes number spinner on balance
     const handleBalanceChange = (e) => {
@@ -19,26 +22,28 @@ const NewGiftCard = () => {
     }
 
     const handleCreateNew = async(e) => {
-        e.prevent.default();
-        const { name, balance, photo, } = data;
+        e.preventDefault();
+        const { name, balance, photo, user } = data;
+        console.log(data)
         try {
-            axios
-                .post('http://localhost:3000/card', {name, balance, photo, })
-            if (data.error) {
-                toast.error(data.error)
+            const res = await axios
+                .post('http://localhost:3000/card', {name, balance, photo, user})
+            if (res.data.error) {
+                toast.error(res.data.error)
             }
             else {
                 setData({
                     name: '',
                     balance: '',
-                    photo: ''
+                    photo: '',
+                    user: '',
                 })
                 toast.success('Created new giftcard')
             }
         }
         catch (err) {
             console.log(err)
-            toast.err.response.data.error
+            toast.error('Failed to create giftcard')
         }
     }
 
@@ -51,6 +56,7 @@ const NewGiftCard = () => {
             placeholder='Gift Card Name...'
             value={data.name}
             onChange={((e) => setData({...data, name: e.target.value}))}
+            required
             />
             <label>Gift Card Balance</label>
             <input
@@ -58,6 +64,7 @@ const NewGiftCard = () => {
             placeholder='Gift Card Balance...'
             value={data.balance}
             onChange={handleBalanceChange}
+            required
             />
             <label>Gift Card Photo</label>
             <input

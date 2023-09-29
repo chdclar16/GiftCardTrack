@@ -8,7 +8,7 @@ const giftCardSchema = mongoose.Schema(
         },
         balance: {
             type: Number,
-            require: true,
+            required: true,
             min: 0,
         },
         photo: {

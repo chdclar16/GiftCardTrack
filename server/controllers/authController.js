@@ -57,7 +57,7 @@ const login = async (req, res) => {
         }
 
         // Check if passwords match
-        const match = comparePasswords(password, user.password);
+        const match = await comparePasswords(password, user.password);
         if (match) {
             jwt.sign(
                 {
@@ -116,6 +116,7 @@ const getProfile = async (req, res) => {
         res.status(404).json(null);
     }
 };
+
 
 module.exports = {
     login,

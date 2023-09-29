@@ -1,7 +1,9 @@
-const { GiftCard } = require('../models/CardSchema.js');
+const GiftCard = require('../models/CardSchema.js')
+const mongoose = require('mongoose');
 
 // Creating a card
 const createCard = async(req, res) => {
+    console.log("request", req.body)
     try {
         if (
             !req.body.name ||
@@ -11,14 +13,17 @@ const createCard = async(req, res) => {
                 message: 'Missing required fields, check console for more'
             })
         }
+        // Convert the string we get into an object
+        const userId = new mongoose.Types.ObjectId(req.body.user);
+
         const newCard = {
             name: req.body.name,
             balance: req.body.balance,
             photo: req.body.photo,
-            user: req.user._id
+            user: userId
         };
 
-        const card = await giftCardSchema.create(newCard)
+        const card = await GiftCard.create(newCard)
         return res.status(201).send(card)
     } catch (err) {
         console.log(err.message);
@@ -65,7 +70,7 @@ const updateGiftCard = async(req, res) => {
             });
         }
 
-        const { id } = req.paramsl
+        const { id } = req.params
         const result = await GiftCard.findByIdAndUpdate(id, req.body);
 
         if (!result) {
