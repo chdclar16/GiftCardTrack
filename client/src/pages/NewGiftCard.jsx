@@ -6,12 +6,11 @@ import { UserContext } from '../../context/userContext';
 
 const NewGiftCard = () => {
     const { user } = useContext(UserContext)
-    console.log(user)
     const [data, setData] = useState({
         name: '',
         balance: '',
         photo: '',
-        user: user.data.id,
+        user: user.id,
     })
 
 
@@ -47,18 +46,6 @@ const NewGiftCard = () => {
         }
     }
 
-
-      // Detect dark mode and set the appropriate CSS class
-  useEffect(() => {
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const formElement = document.getElementById('giftCardForm');
-
-    if (isDarkMode) {
-      formElement.classList.add('dark-mode');
-    } else {
-      formElement.classList.remove('dark-mode');
-    }
-  }, []);
 
   return (
     <div className='w-full  flex justify-center items-center h-screen xl:h-screen-80'>
