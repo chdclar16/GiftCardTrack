@@ -8,7 +8,11 @@ export function UserContextProvider({children}) {
     const [isLoading, setIsLoading] = useState(true);
 
     // We added is loading to wait for the user data to be fetched
-
+    
+    const logout = () => {
+        setUser(null);
+    };
+    
     useEffect(() => {
         if (!user) {
             axios
@@ -23,11 +27,12 @@ export function UserContextProvider({children}) {
                     setIsLoading(false);
                 });
         }
-    }, [user])
+    }, [user]);
+
 
 
     return (
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{ user, setUser, logout }}>
             {!isLoading && children}
         </UserContext.Provider>
     )

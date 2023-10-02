@@ -43,7 +43,7 @@ const Login = () => {
     }
 
     return (
-    <div>
+    <div className='flex m-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
         <form onSubmit={loginUser}>
             <label>Username:</label>
             <input type='text' placeholder='Username...' value={data.username} onChange={(e) => {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { toast } from 'react-hot-toast';
 import { UserContext } from '../../context/userContext';
 
@@ -47,9 +47,22 @@ const NewGiftCard = () => {
         }
     }
 
+
+      // Detect dark mode and set the appropriate CSS class
+  useEffect(() => {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const formElement = document.getElementById('giftCardForm');
+
+    if (isDarkMode) {
+      formElement.classList.add('dark-mode');
+    } else {
+      formElement.classList.remove('dark-mode');
+    }
+  }, []);
+
   return (
     <div className='w-full  flex justify-center items-center h-screen xl:h-screen-80'>
-        <form onSubmit={handleCreateNew} className='bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 w-96'>
+        <form onSubmit={handleCreateNew} className='bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 w-96' id='giftCardForm'>
             <div className='mb-4'>
                 <label className='block text-gray-700 text-lg font-bold mb-2'>Gift Card Name</label>
                 <input
