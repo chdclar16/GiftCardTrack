@@ -58,7 +58,7 @@ const NewGiftCard = () => {
                 value={data.name}
                 onChange={((e) => setData({...data, name: e.target.value}))}
                 required
-                className='shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-non focus:shadow-outline'
+                className='shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-non focus:shadow-outline bg-white'
                 />
             </div>
             <div className='mb-4'>
@@ -69,7 +69,7 @@ const NewGiftCard = () => {
                 value={data.balance}
                 onChange={handleBalanceChange}
                 required
-                className='shadow appearance-none border rounded w-full py-2 px-3'
+                className='shadow appearance-none border rounded w-full py-2 px-3 bg-white'
                 />
             </div>
             <div className='mb-4'>
@@ -79,7 +79,7 @@ const NewGiftCard = () => {
                 placeholder='Photo URL(Optional)'
                 value={data.photo}
                 onChange={((e) => setData({...data, photo: e.target.value}))}
-                className='shadow appearance-none border rounded w-full py-2 px-3'
+                className='shadow appearance-none border rounded w-full py-2 px-3 bg-white'
                 />
             </div>
             <div className='flex justify-end '>

@@ -6,7 +6,11 @@ export default {
     "./src/**/*.{html,js,jsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        onest: ['Onest', 'sans']
+      }
+    },
   },
   plugins: [require('daisyui')],
 }
