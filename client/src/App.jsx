@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import NewGiftCard from './pages/NewGiftCard'
 import './styles.css'
+import GiftCardList from './pages/GiftCardList'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/new' element={<NewGiftCard />} />
+        <Route path='/list' element={<GiftCardList />} />
       </Routes>
     </UserContextProvider>
   )

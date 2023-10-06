@@ -7,10 +7,10 @@ router.post('/', createCard)
 
 
 // Get all giftcards from db
-router.get('/', getGiftCards);
+router.get('/:id', getGiftCards);
 
 // Get one giftcard
-router.get('/:id', getGiftCard);
+router.get('/one/:id', getGiftCard);
 
 // Update giftcard
 router.put('/:id', updateGiftCard);

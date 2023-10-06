@@ -5,11 +5,10 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({children}) {
     const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
     const [isLoggedInContext, setIsLoggedInContext] = useState(false);
 
-    // We added is loading to wait for the user data to be fetched
-    
+
+    console.log(user)
     const logout = () => {
         setUser(null);
         setIsLoggedInContext(false);
@@ -21,12 +20,10 @@ export function UserContextProvider({children}) {
                 .get('http://localhost:3000/auth/profile', {withCredentials: true})
                 .then((response) => {
                     setUser(response.data);
-                    setIsLoading(false);
                     console.log({"User Context Data": response.data})
                 })
                 .catch((error) => {
                     console.error({"Error fecthing profile data": error});
-                    setIsLoading(false);
                 });
         }
     }, [isLoggedInContext]);

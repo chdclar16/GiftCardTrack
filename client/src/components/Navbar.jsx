@@ -13,6 +13,7 @@ const NavBar = () => {
         if (user) {
             setIsLoggedIn(true);
             console.log("User Logged", user)
+            console.log(user, "user")
         } else {
             setIsLoggedIn(false);
         }
@@ -30,7 +31,10 @@ const NavBar = () => {
                 {isLoggedIn ? (
                     <>
                         <Link to='/new'>
-                            <span>New Cards</span>
+                            <span>New Card</span>
+                        </Link>
+                        <Link to='/list'>
+                            <span>Gift Cards</span>
                         </Link>
                         <LogOutButton /> 
                     </>
