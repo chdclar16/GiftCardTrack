@@ -6,8 +6,9 @@ import axios from 'axios';
 const GiftCardList = () => {
     const [giftCards, setGiftCards] = useState([]);
     const { user } = useContext(UserContext)
-    console.log(user)
     
+
+    // Get giftcards and set them as giftcard state
     const getGiftCards = async() => {
         try {
             const res = await axios.get(`http://localhost:3000/card/${user.id}`)
@@ -18,7 +19,7 @@ const GiftCardList = () => {
         }
         catch(err) {
             console.log("Gift Card List Error", err.message)
-            toast.error('Failed to create giftcard')
+            toast.error('Failed to get giftcards')
         }
     }
 
@@ -26,7 +27,7 @@ const GiftCardList = () => {
 
     useEffect(() => {
         getGiftCards();
-    }, [])
+    })
 
     return (
         <>

@@ -35,7 +35,6 @@ const createCard = async(req, res) => {
 const getGiftCards = async(req, res) => {
     try {
         const userId = new mongoose.Types.ObjectId(req.params.id)
-        console.log(req.params)
         const giftCards = await GiftCard.find({ user: userId });
         
 
