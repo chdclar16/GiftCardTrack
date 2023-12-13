@@ -16,6 +16,7 @@ const NavBar = () => {
     }
   }, [user]);
 
+<<<<<<< HEAD
   return (
     <div className="bg-blue-500">
       <nav className="relative px-4 py-4 flex justify-between items-center">
@@ -48,3 +49,45 @@ const NavBar = () => {
 };
 
 export default NavBar;
+=======
+    useEffect(() => {
+        if (user) {
+            setIsLoggedIn(true);
+            console.log("User Logged", user)
+            console.log(user, "user")
+        } else {
+            setIsLoggedIn(false);
+        }
+    }, [user]);
+
+    return (
+        <div className='bg-blue-500'>
+            <nav className='relative px-4 py-4 flex justify-between items-center'>
+                <Link className='text-3xl font-bold leading-none w-8 h-8'>
+                    <img src="/images/giftCard.png" alt="Gift Card" className='w-8 h-8' />
+                </Link>
+                <Link to='/' className='hover:scale-150 duration-150 ease-in-out'>
+                    <IoHomeOutline />
+                </Link>
+                {isLoggedIn ? (
+                    <>
+                        <Link to='/new'>
+                            <span>New Card</span>
+                        </Link>
+                        <Link to='/list'>
+                            <span>Gift Cards</span>
+                        </Link>
+                        <LogOutButton /> 
+                    </>
+                ) : (
+                <Link to='/login'>
+                    <button>Login</button>
+                </Link>
+                )}
+            </nav>
+        </div>
+    )
+}
+
+export default NavBar
+>>>>>>> 69cb95cbdbec2b4a73eb4528957826617f986a91

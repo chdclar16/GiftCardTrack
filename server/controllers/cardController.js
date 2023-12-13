@@ -34,14 +34,16 @@ const createCard = async(req, res) => {
 // Get all giftcards
 const getGiftCards = async(req, res) => {
     try {
-        const giftCards = await GiftCard.find({});
+        const userId = new mongoose.Types.ObjectId(req.params.id)
+        const giftCards = await GiftCard.find({ user: userId });
+        
 
         return res.status(200).send({
             count: giftCards.length,
             data: giftCards,
         })
         } catch (err) {
-            console.log({"Unable to get all gift cards": err.message});
+            console.log("Unable to get all gift cards", err.message);
             res.status(500).send({ message: err.message });
         }
 }

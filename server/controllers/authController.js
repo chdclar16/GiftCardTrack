@@ -49,7 +49,6 @@ const login = async (req, res) => {
         const { username, password } = req.body;
         // Check if user exists
         const user = await User.findOne({ username });
-        console.log({ user: user });
         if (!user) {
             return res.status(404).json({
                 error: "Username not found",
@@ -90,7 +89,6 @@ const login = async (req, res) => {
 const logOut = (req, res) => {
     // Clear the token from cookies
     res.clearCookie('token');
-    console.log("This is the res", res)
     // Send a response to the client
     res.status(200).json({ message: "Logout Succcessful" })
 };
@@ -103,7 +101,6 @@ const getProfile = async (req, res) => {
         // We use jwt verify the token
         jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
             if (err) {
-                console.log(user)
                 console.error({ "Profile Eror": err });
                 res.status(401).json({ error: "Unauthorized" });
             } else {
